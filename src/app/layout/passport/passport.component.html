@@ -1,0 +1,17 @@
+<div class="container">
+  <header-i18n showLangText="false" class="langs"></header-i18n>
+  <div class="wrap">
+    <div class="top">
+      <div class="head">
+        <img class="logo" src="./assets/logo-color.svg" />
+        <span class="title">Monster Form</span>
+      </div>
+      <div class="desc">江湖中最具影响力,却鲜为人知的angular动态表单...</div>
+    </div>
+    <router-outlet></router-outlet>
+    <global-footer [links]="links">
+      Copyright
+      <i nz-icon nzType="copyright"></i> 2019 <a target="_blank">Monster</a>出品
+    </global-footer>
+  </div>
+</div>
