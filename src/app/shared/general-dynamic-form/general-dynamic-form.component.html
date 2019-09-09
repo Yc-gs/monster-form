@@ -1,0 +1,6 @@
+<ng-container *ngIf="isShow">
+  <form nz-form [nzLayout]="layout" [formGroup]="form">
+    <ng-container *ngFor="let config of initFormDataTruthy" emrGeneralDynamicForm [config]="config" [form]="form">
+    </ng-container>
+  </form>
+</ng-container>

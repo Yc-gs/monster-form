@@ -1,0 +1,13 @@
+<nz-form-item [formGroup]="form">
+  <nz-form-label [class]="config.required ? config.label.className + '-required' : config.label.className"
+    [nzRequired]="config.required" [nzFor]="config.formControlName" [ngStyle]="{ width: config.label.width + 'px' }">
+    {{config.label.alias}}</nz-form-label>
+  <nz-form-control>
+    <nz-date-picker [nzDisabled]="config.control.disabled" nzAllowClear="false"
+      [nzDisabledDate]="config.nzDisabledDate ? disabledStartDate : false"
+      [nzDisabledTime]="config.nzDisabledTime ? disabledDateTime : false" [class]="'dateWidget' + config.control.width"
+      [nzShowTime]="{nzMinuteStep: 30, nzFormat: 'HH:mm'}" nzFormat="yyyy-MM-dd HH:mm" nzPlaceHolder="请选择"
+      [formControlName]="config.formControlName" nzAllowClear (nzOnOk)="handleDate($event)">
+    </nz-date-picker>
+  </nz-form-control>
+</nz-form-item>

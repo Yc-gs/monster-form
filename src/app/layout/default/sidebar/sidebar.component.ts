@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { SettingsService } from '@delon/theme';
+import { SettingsService, MenuService } from '@delon/theme';
 
 @Component({
   selector: 'layout-sidebar',
@@ -7,5 +7,7 @@ import { SettingsService } from '@delon/theme';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent {
-  constructor(public settings: SettingsService) {}
+  constructor(public settings: SettingsService, private menuService: MenuService) {
+    console.log(this.menuService);
+  }
 }

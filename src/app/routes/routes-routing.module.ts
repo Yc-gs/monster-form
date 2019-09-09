@@ -5,14 +5,15 @@ import { environment } from '@env/environment';
 // layout
 import { LayoutDefaultComponent } from '../layout/default/default.component';
 import { LayoutPassportComponent } from '../layout/passport/passport.component';
-// dashboard pages
-import { DashboardV1Component } from './dashboard/v1/v1.component';
 // passport pages
 import { UserLoginComponent } from './passport/login/login.component';
 import { UserRegisterComponent } from './passport/register/register.component';
 import { UserRegisterResultComponent } from './passport/register-result/register-result.component';
 // single pages
 import { UserLockComponent } from './passport/lock/lock.component';
+import { DocumentContentComponent } from './document/document-content/document-content.component';
+import { DocumentStartComponent } from './document/document-start/document-start.component';
+import { DocumentInstallComponent } from './document/document-install/document-install.component';
 
 const routes: Routes = [
   {
@@ -21,9 +22,17 @@ const routes: Routes = [
     canActivate: [SimpleGuard],
     canActivateChild: [SimpleGuard],
     children: [
-      { path: '', redirectTo: 'dashboard/v1', pathMatch: 'full' },
-      { path: 'dashboard', redirectTo: 'dashboard/v1', pathMatch: 'full' },
-      { path: 'dashboard/v1', component: DashboardV1Component },
+      { path: '', redirectTo: 'document/install', pathMatch: 'full' },
+      { path: 'document', redirectTo: 'document/install', pathMatch: 'full' },
+      { path: 'document/install', component: DocumentInstallComponent },
+      { path: 'document/start', component: DocumentStartComponent },
+      { path: 'document/content', component: DocumentContentComponent },
+      // Widget
+      { path: 'widget', loadChildren: () => import('./widget/widget.module').then(m => m.WidgetModule) },
+      // customize
+      { path: 'customize', loadChildren: () => import('./customize/customize.module').then(m => m.CustomizeModule) },
+      // user
+      { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
       // Exception
       { path: 'exception', loadChildren: () => import('./exception/exception.module').then(m => m.ExceptionModule) },
     ],

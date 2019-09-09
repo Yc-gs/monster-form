@@ -1,0 +1,15 @@
+<div [formGroup]="form">
+  <div [formArrayName]="config.formControlName">
+    <ng-container *ngFor="let item of formArray.controls; let i = index" [formGroupName]="i">
+      <div class="card" [ngClass]="{'card-last': i == formArray.length - 1}">
+        <div class="action">
+          <a (click)="add()"><i nz-icon type="plus"></i><span>添加</span></a>
+          <a (click)="delete(i)" *ngIf="formArray.controls.length !== 1"><i class="delete" nz-icon type="delete"></i><span>删除</span></a>
+        </div>
+        <ng-container *ngFor="let c of item.value.arrayConfig" emrGeneralDynamicForm [config]="c" [form]="item">
+        </ng-container>
+
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+.card {
+    padding: 10px 0;
+    position: relative;
+    button {
+        position: absolute;
+        right: 1px;
+        bottom: 7px;
+    }
+    .action {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        a {
+            padding-left: 6px;
+            i.delete {
+                color: #293750;
+            }
+            span {
+                color: #293750;
+            }
+        }
+    }
+    border-bottom: 2px dashed #e4e5e7;
+}
+.card-last {
+    border-bottom: 2px solid #e4e5e7;
+}

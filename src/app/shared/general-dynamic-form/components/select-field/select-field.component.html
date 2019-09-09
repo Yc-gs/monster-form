@@ -1,0 +1,35 @@
+<ng-container *ngIf="!config.showSearch">
+  <nz-form-item [formGroup]="form">
+    <nz-form-label [class]="config.required ? config.label.className + '-required' : config.label.className"
+      [nzRequired]="config.required" [nzFor]="config.formControlName" [ngStyle]="{ width: config.label.width + 'px' }">{{config.label.alias}}</nz-form-label>
+    <nz-form-control>
+      <nz-select nzPlaceHolder="请选择" (ngModelChange)="handleChange($event)" [compareWith]="compareFn" [ngStyle]="{ width: config.control.width + 'px' }"
+        [formControlName]="config.formControlName" [nzDisabled]="config.control.disabled">
+        <nz-option *ngFor="let option of config.control.options" [nzValue]="config.returnObj ? option : option.value" [nzLabel]="option.label">
+        </nz-option>
+      </nz-select>
+    </nz-form-control>
+    <span class="extra" *ngIf="config.extra">{{config.extra}}</span>
+  </nz-form-item>
+</ng-container>
+<ng-container *ngIf="config.showSearch">
+  <nz-form-item [formGroup]="form">
+    <nz-form-label [class]="config.required ? config.label.className + '-required' : config.label.className"
+      [nzRequired]="config.required" [nzFor]="config.formControlName" [ngStyle]="{ width: config.label.width + 'px' }">{{config.label.alias}}</nz-form-label>
+    <nz-form-control>
+      <nz-select nzPlaceHolder="请选择" (ngModelChange)="handleChange($event)" [compareWith]="compareFn" [nzServerSearch]="true" (nzScrollToBottom)="scrollToBottom()"
+        (nzOnSearch)="handleSearch($event)" (nzOpenChange)="actionSelect($event)"
+        [ngStyle]="{ width: config.control.width + 'px' }" [formControlName]="config.formControlName" nzShowSearch
+        [nzDisabled]="config.control.disabled">
+        <ng-container *ngFor="let o of longData">
+          <nz-option *ngIf="!isLoading" [nzValue]="config.returnObj ? o : o.value" [nzLabel]="o.label">
+          </nz-option>
+        </ng-container>
+        <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
+          <i nz-icon type="loading" class="loading-icon"></i> Loading Data...
+        </nz-option>
+      </nz-select>
+    </nz-form-control>
+    <span class="extra" *ngIf="config.extra">{{config.extra}}</span>
+  </nz-form-item>
+</ng-container>

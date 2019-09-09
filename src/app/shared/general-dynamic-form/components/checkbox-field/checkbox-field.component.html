@@ -1,0 +1,28 @@
+<ng-container *ngTemplateOutlet="options ? checkboxGroup : checkbox">
+</ng-container>
+<ng-template #checkboxGroup>
+  <nz-form-item [formGroup]="form">
+    <nz-form-label [class]="config.required ? config.label.className + '-required' : config.label.className" [nzRequired]="config.required" [nzFor]="config.formControlName"
+                   [ngStyle]="{ width: config.label.width + 'px' }">{{config.label.alias}}</nz-form-label>
+    <nz-form-control>
+      <nz-checkbox-group
+        *ngIf="options"
+        [formControlName]="config.formControlName"
+        [(ngModel)]="options"
+        (ngModelChange)="config.callback && config.callback($event)">
+      ></nz-checkbox-group>
+    </nz-form-control>
+  </nz-form-item>
+</ng-template>
+<ng-template #checkbox>
+  <nz-form-item [formGroup]="form" [class]="config.className">
+    <nz-form-control [nzSpan]="config.control.span">
+      <label
+        nz-checkbox
+        [formControlName]="config.formControlName"
+        (ngModelChange)="config.callback && config.callback($event)">
+        {{ config.label.alias }}
+      </label>
+    </nz-form-control>
+  </nz-form-item>
+</ng-template>

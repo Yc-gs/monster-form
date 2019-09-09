@@ -1,0 +1,13 @@
+<nz-form-item [formGroup]="form"
+  [class]="config.required ? config.label.className + '-required' : config.label.className">
+  <nz-form-label [nzRequired]="config.required" [nzFor]="config.formControlName"
+    [ngStyle]="{ width: config.label.width + 'px' }">{{config.label.alias}}
+  </nz-form-label>
+  <nz-form-control>
+    <nz-radio-group [ngStyle]="{ width: config.control.width + 'px' }"
+      (ngModelChange)="handleChange($event)" [formControlName]="config.formControlName"
+      [nzDisabled]="config.control.disabled">
+      <label nz-radio *ngFor="let option of config.control.options" [nzValue]="option.value">{{ option.label }}</label>
+    </nz-radio-group>
+  </nz-form-control>
+</nz-form-item>
