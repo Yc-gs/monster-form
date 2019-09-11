@@ -42,8 +42,8 @@ export class GeneralDynamicFormService {
 
   private _initDetailInfo(array: IInitFormDataItem[]): FormGroup {
     const obj = {};
-    obj['id'] = null;
-    obj['arrayConfig'] = [deepCopy(array)];
+    obj.id = null;
+    obj.arrayConfig = [deepCopy(array)];
     array.forEach((i) => {
       if (i.type === 'select-double') {
         const arr = [null];

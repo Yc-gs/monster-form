@@ -9,7 +9,7 @@ import { deepCopy } from '@delon/util';
   styleUrls: ['./general-dynamic-form.component.scss'],
 })
 export class GeneralDynamicFormComponent {
-  @Input() public layout: string = 'inline';
+  @Input() public layout = 'inline';
 
   public get status(): string {
     return this.form.status;
@@ -40,7 +40,7 @@ export class GeneralDynamicFormComponent {
   }
 
   public initFormDataTruthy: IInitFormData;
-  public isShow: boolean = false;
+  public isShow = false;
   public form: FormGroup;
   constructor(
     public fb: FormBuilder,
@@ -73,8 +73,8 @@ export class GeneralDynamicFormComponent {
             childControl.controls = value[j].map((m: any) => {
               const arrayConfig: any = this.initFormDataTruthy.find((k: any) => k.formControlName === j).array;
               const obj = {};
-              obj['id'] = null;
-              obj['arrayConfig'] = [deepCopy(arrayConfig)];
+              obj.id = null;
+              obj.arrayConfig = [deepCopy(arrayConfig)];
               arrayConfig.forEach((i) => {
                 if (i.type === 'select-double') {
                   const arr = [null];

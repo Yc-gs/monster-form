@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class DocumentContentComponent implements OnInit {
   source: string = `
   import { Component } from '@angular/core';
-   
   @Component({
     template: 'Hello {{ name }}'
   })

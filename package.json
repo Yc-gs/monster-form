@@ -64,6 +64,7 @@
     "ajv": "^6.10.2",
     "angular-highlight-js": "^2.0.1",
     "file-saver": "^2.0.2",
+    "highlight": "^0.2.4",
     "highlight.js": "^9.15.10",
     "ng-zorro-antd": "^8.1.2",
     "ngx-countdown": "^3.2.0",

@@ -85,6 +85,7 @@ const APPINIT_PROVIDES = [
     multi: true,
   },
 ];
+
 // #endregion
 
 import { DelonModule } from './delon.module';
@@ -94,15 +95,6 @@ import { AppComponent } from './app.component';
 import { RoutesModule } from './routes/routes.module';
 import { LayoutModule } from './layout/layout.module';
 
-// #hljs
-import * as hljs from 'highlight.js';
-import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
-
-export function highlightJsFactory() {
-  return hljs;
-}
-const hljs: any = require('highlight.js/lib/highlight');
-hljs.registerLanguage('typescript', require('highlight.js/lib/languages/typescript'));
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -110,10 +102,6 @@ hljs.registerLanguage('typescript', require('highlight.js/lib/languages/typescri
     BrowserAnimationsModule,
     HttpClientModule,
     DelonModule.forRoot(),
-    HighlightJsModule.forRoot({
-      provide: HIGHLIGHT_JS,
-      useFactory: highlightJsFactory,
-    }),
     CoreModule,
     SharedModule,
     LayoutModule,

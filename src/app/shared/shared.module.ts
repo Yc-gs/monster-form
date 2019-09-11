@@ -28,6 +28,7 @@ import { DateFieldComponent } from './general-dynamic-form/components/date-field
 import { RadioFieldComponent } from './general-dynamic-form/components/radio-field/radio-field.component';
 import { CheckboxFieldComponent } from './general-dynamic-form/components/checkbox-field/checkbox-field.component';
 import { GeneralDynamicFormDirective } from './general-dynamic-form/general-dynamic-form.directive';
+import { HightlightCodeDirective } from './directive/hightlight-code.directive';
 
 const THIRDMODULES = [NgZorroAntdModule, CountdownModule, UEditorModule, NgxTinymceModule];
 // #endregion
@@ -46,7 +47,8 @@ const WIDGETS = [
   RadioFieldComponent,
   CheckboxFieldComponent,
 ];
-const DIRECTIVES = [GeneralDynamicFormDirective];
+
+const DIRECTIVES = [GeneralDynamicFormDirective, HightlightCodeDirective];
 // #endregion
 
 @NgModule({

@@ -21,8 +21,8 @@ export class ArrayFieldComponent implements OnInit {
 
   public add(): void {
     const obj = {};
-    obj['id'] = null;
-    obj['arrayConfig'] = [deepCopy(this.config.array)];
+    obj.id = null;
+    obj.arrayConfig = [deepCopy(this.config.array)];
     this.config.array.forEach((i: any) => {
       if (i.type === 'select-double') {
         const arr = [null];
