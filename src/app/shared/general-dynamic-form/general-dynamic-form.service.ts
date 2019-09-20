@@ -13,7 +13,7 @@ export class GeneralDynamicFormService {
     public fb: FormBuilder,
   ) { }
 
-  public handleFormJson(initFormDataTruthy: any): FormGroup {
+  public handleFormJson(initFormDataTruthy: any, options?: any): FormGroup {
     const obj: any = {};
     initFormDataTruthy.forEach((i) => {
       if (i.type === 'array') {
@@ -37,6 +37,9 @@ export class GeneralDynamicFormService {
         }
       }
     });
+    if (options) {
+      return this.fb.group(obj, options);
+    }
     return this.fb.group(obj);
   }
 

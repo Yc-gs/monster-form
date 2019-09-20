@@ -2,7 +2,7 @@
   <div [formArrayName]="config.formControlName">
     <ng-container *ngFor="let item of formArray.controls; let i = index" [formGroupName]="i">
       <div class="card" [ngClass]="{'card-last': i == formArray.length - 1}">
-        <div class="action">
+        <div class="action" *ngIf="!formArray.disabled">
           <a (click)="add()"><i nz-icon type="plus"></i><span>添加</span></a>
           <a (click)="delete(i)" *ngIf="formArray.controls.length !== 1"><i class="delete" nz-icon type="delete"></i><span>删除</span></a>
         </div>

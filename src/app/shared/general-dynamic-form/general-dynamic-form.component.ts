@@ -9,8 +9,6 @@ import { deepCopy } from '@delon/util';
   styleUrls: ['./general-dynamic-form.component.scss'],
 })
 export class GeneralDynamicFormComponent {
-  @Input() public layout = 'inline';
-
   public get status(): string {
     return this.form.status;
   }
@@ -41,11 +39,9 @@ export class GeneralDynamicFormComponent {
 
   public initFormDataTruthy: IInitFormData;
   public isShow = false;
+  public layout: 'inline';
   public form: FormGroup;
-  constructor(
-    public fb: FormBuilder,
-    private _cdr: ChangeDetectorRef,
-  ) { }
+  constructor(public fb: FormBuilder, private _cdr: ChangeDetectorRef) {}
 
   @Input() public set initFormData(initFormData: IInitFormData) {
     this.initFormDataTruthy = initFormData;
@@ -62,7 +58,7 @@ export class GeneralDynamicFormComponent {
     return this.form.contains(controlName);
   }
 
-  public patchValue(value: { [key: string]: any; }, options: { onlySelf?: boolean; emitEvent?: boolean; } = {}): void {
+  public patchValue(value: { [key: string]: any }, options: { onlySelf?: boolean; emitEvent?: boolean } = {}): void {
     const parentControls = this.form.controls;
     for (const j in parentControls) {
       if (parentControls.hasOwnProperty(j)) {
@@ -72,10 +68,17 @@ export class GeneralDynamicFormComponent {
           if (count > 1) {
             childControl.controls = value[j].map((m: any) => {
               const arrayConfig: any = this.initFormDataTruthy.find((k: any) => k.formControlName === j).array;
-              const obj = {};
+              const obj = {
+                id: null,
+                arrayConfig: [],
+              };
               obj.id = null;
-              obj.arrayConfig = [deepCopy(arrayConfig)];
-              arrayConfig.forEach((i) => {
+              if (m.arrayConfig) {
+                obj.arrayConfig = [deepCopy(m.arrayConfig)];
+              } else {
+                obj.arrayConfig = [deepCopy(arrayConfig)];
+              }
+              obj.arrayConfig[0].forEach(i => {
                 if (i.type === 'select-double') {
                   const arr = [null];
                   const arrDouble = [null];
@@ -102,7 +105,7 @@ export class GeneralDynamicFormComponent {
         }
       }
     }
-    this.form.patchValue(value, options);
+    this.form.patchValue(value);
   }
 
   public reset(): void {
@@ -139,6 +142,7 @@ export class GeneralDynamicFormComponent {
       if (this.form.controls.hasOwnProperty(i)) {
         if (this.form.controls[i] instanceof FormArray) {
           const arrItem = this.form.controls[i] as FormArray;
+          arrItem.disable();
           arrItem.controls.forEach((j: FormGroup) => {
             for (const m in j.controls) {
               if (j.controls.hasOwnProperty(m)) {
@@ -158,6 +162,7 @@ export class GeneralDynamicFormComponent {
       if (this.form.controls.hasOwnProperty(i)) {
         if (this.form.controls[i] instanceof FormArray) {
           const arrItem = this.form.controls[i] as FormArray;
+          arrItem.enable();
           arrItem.controls.forEach((j: FormGroup) => {
             for (const m in j.controls) {
               if (j.controls.hasOwnProperty(m)) {
@@ -176,12 +181,15 @@ export class GeneralDynamicFormComponent {
     return this.form;
   }
 
-  public disabledItem(formControlName: string | string[], opts?: {
-    onlySelf?: boolean;
-    emitEvent?: boolean;
-  }): void {
+  public disabledItem(
+    formControlName: string | string[],
+    opts?: {
+      onlySelf?: boolean;
+      emitEvent?: boolean;
+    },
+  ): void {
     if (formControlName instanceof Array) {
-      formControlName.forEach((i) => {
+      formControlName.forEach(i => {
         if (this.form.controls.hasOwnProperty(i)) {
           if (opts) {
             this.form.controls[i].disable(opts);
@@ -201,12 +209,15 @@ export class GeneralDynamicFormComponent {
     }
   }
 
-  public enabledItem(formControlName: string | string[], opts?: {
-    onlySelf?: boolean;
-    emitEvent?: boolean;
-  }): void {
+  public enabledItem(
+    formControlName: string | string[],
+    opts?: {
+      onlySelf?: boolean;
+      emitEvent?: boolean;
+    },
+  ): void {
     if (formControlName instanceof Array) {
-      formControlName.forEach((i) => {
+      formControlName.forEach(i => {
         if (this.form.controls.hasOwnProperty(i)) {
           if (opts) {
             this.form.controls[i].enable(opts);
@@ -225,5 +236,4 @@ export class GeneralDynamicFormComponent {
       }
     }
   }
-
 }

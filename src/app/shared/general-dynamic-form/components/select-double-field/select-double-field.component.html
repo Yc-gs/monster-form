@@ -2,7 +2,7 @@
   <nz-form-label [class]="config.required ? config.label.className + '-required' : config.label.className"
     [nzRequired]="config.required" [nzFor]="config.formControlName" [ngStyle]="{ width: config.label.width + 'px' }">{{config.label.alias}}</nz-form-label>
   <nz-form-control>
-    <nz-select nzPlaceHolder="请选择" [compareWith]="compareFn" (ngModelChange)="handleChangeFirst($event)" [ngStyle]="{ width: config.control.width + 'px' }"
+    <nz-select [nzPlaceHolder]="config.placeholder ? config.placeholder : '请选择'" [compareWith]="compareFn" (ngModelChange)="handleChangeFirst($event)" [ngStyle]="{ width: config.control.width + 'px' }"
       [formControlName]="config.formControlName" [nzDisabled]="config.control.disabled">
       <nz-option *ngFor="let option of config.control.options" [nzValue]="config.returnObj[0] ? option : option.value" [nzLabel]="option.label">
       </nz-option>
@@ -10,7 +10,7 @@
   </nz-form-control>
   <span class="placeholder"></span>
   <nz-form-control>
-    <nz-select nzPlaceHolder="请选择" [compareWith]="compareFn" (ngModelChange)="handleChangeSecond($event)" [ngStyle]="{ width: config.controlDouble.width + 'px' }"
+    <nz-select [nzPlaceHolder]="config.placeholder ? config.placeholder : '请选择'" [compareWith]="compareFn" (ngModelChange)="handleChangeSecond($event)" [ngStyle]="{ width: config.controlDouble.width + 'px' }"
       [formControlName]="config.formControlNameDouble" [nzDisabled]="config.controlDouble.disabled">
       <nz-option *ngFor="let option of config.controlDouble.options" [nzValue]="config.returnObj[1] ? option : option.value" [nzLabel]="option.label">
       </nz-option>

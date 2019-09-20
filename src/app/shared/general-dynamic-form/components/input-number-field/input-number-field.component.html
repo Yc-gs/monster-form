@@ -1,7 +1,7 @@
 <nz-form-item [formGroup]="form">
   <nz-form-label [class]="config.required ? config.label.className + '-required' : config.label.className"
     [nzRequired]="config.required" [nzFor]="config.formControlName" [ngStyle]="{ width: config.label.width + 'px' }">
-    {{config.label.alias}}</nz-form-label>
+    {{config.label.alias}}:</nz-form-label>
   <nz-form-control>
     <nz-input-number [ngStyle]="{ width: config.control.width + 'px' }" [formControlName]="config.formControlName"
       [nzMin]="0.5" [nzStep]="0.5" [disabled]="config.control.disabled" [nzPlaceHolder]="'请输入'"></nz-input-number>

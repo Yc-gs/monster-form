@@ -9,6 +9,7 @@ export interface IInitFormData extends Array<IInitFormDataItem | IInitFormDataAr
 
 interface IFlexItem {
     type: string;
+    placeholder?: string;
     labelKey?: string;
     valueKey?: string;
     extraKeys?: string[];
@@ -37,6 +38,7 @@ interface IFlexItem {
 export interface IInitFormDataItem {
     type: string;
     showSearch?: boolean;
+    placeholder?: string;
     asyncSearchUrl?: string;
     nzDisabledDate?: boolean;
     nzDisabledTime?: boolean;
@@ -63,6 +65,7 @@ export interface IInitFormDataItem {
 interface IInitFormDataArray {
     type: string;
     array: IInitFormDataItem[];
+    placeholder?: string;
     asyncSearchUrl?: string;
     nzDisabledDate?: boolean;
     nzDisabledTime?: boolean;

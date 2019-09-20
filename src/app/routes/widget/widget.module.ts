@@ -12,13 +12,21 @@ import { SelectDoubleComponent } from './select-double/select-double.component';
 import { DateComponent } from './date/date.component';
 import { RadioComponent } from './radio/radio.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
-
+import { SharedModule } from '@shared';
 
 @NgModule({
-  declarations: [InputComponent, InputNumberComponent, FlexComponent, BlankComponent, ArrayComponent, SelectComponent, SelectDoubleComponent, DateComponent, RadioComponent, CheckboxComponent],
-  imports: [
-    CommonModule,
-    WidgetRoutingModule
-  ]
+  declarations: [
+    InputComponent,
+    InputNumberComponent,
+    FlexComponent,
+    BlankComponent,
+    ArrayComponent,
+    SelectComponent,
+    SelectDoubleComponent,
+    DateComponent,
+    RadioComponent,
+    CheckboxComponent,
+  ],
+  imports: [CommonModule, SharedModule, WidgetRoutingModule],
 })
-export class WidgetModule { }
+export class WidgetModule {}
